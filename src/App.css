@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+.content {
+  width: 100%;
+  background-image: url("back.jpg");
+}
+
+.menu {
+  justify-content: center;
+
+  background-color: darkslategray;
+}
+
+/* .container {
+  widht: 100%;
+  margin: 1em auto;
+  background-color: darkslategray;
+} */
+.card {
+  justify-content: center;
+}
+.image {
+  width: 14rem;
+}
+/* .grid {
+  display: grid;
+  margin-left: 0.5px;
+  grid-template-column: repeat(4, 1fr);
+  grid-gab: 0.2 em;
+  justify-content: center;
+} */

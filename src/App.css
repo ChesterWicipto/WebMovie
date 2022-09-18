@@ -37,7 +37,7 @@
   }
 }
 
-.content {
+body {
   width: 100%;
   background-image: url("back.jpg");
 }

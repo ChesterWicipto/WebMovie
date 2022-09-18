@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Moviebox from "./Moviebox";
 
+import "animate.css";
+
 const App = () => {
   const API_URL = "https://api.themoviedb.org/3/movie/popular?api_key=367f5b629a0d846efc84ee8735fe85fc";
-  const API_SEARCH = "https://api.themoviedb.org/3/search/movie?api_key=367f5b629a0d846efc84ee8735fe85fc&query";
+
   const [movie, setMovie] = useState([]);
   const [query, setQuery] = useState("");
+  const [tes, setTes] = useState("Loading...");
 
   // useEffect(() => {
   //   axios
@@ -44,14 +47,22 @@ const App = () => {
     e.preventDefault();
     console.log("Searching ");
 
-    try {
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=367f5b629a0d846efc84ee8735fe85fc&query=${query}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log(data);
-      setMovie(data.results);
-    } catch (e) {
-      console.log(e);
+    if (query.length == 0) {
+      alert("Tidak boleh kosong");
+    } else {
+      try {
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=367f5b629a0d846efc84ee8735fe85fc&query=${query}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.results.length == 0) {
+          setTes("cari apa nn anjing? ");
+        }
+
+        setMovie(data.results);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -65,9 +76,7 @@ const App = () => {
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand fw-bold" href="#">
-            Movies App
-          </a>
+          <a class="navbar-brand fw-bold">Movies App</a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
@@ -85,7 +94,7 @@ const App = () => {
           </div>
         </div>
       </nav>
-      <div>
+      <div className="animate__animated animate__fadeIn">
         {movie.length > 0 ? (
           <div className="content mt-5">
             <div className="container  ">
@@ -108,7 +117,7 @@ const App = () => {
             <br></br>
             <br></br>
             <br></br>
-            <h1 className="text-dark fw-bold mt-5">Sorry NO Movies Found</h1>
+            <h1 className="text-white fw-bold mt-5">{tes}</h1>
           </div>
         )}
       </div>

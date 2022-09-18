@@ -4,7 +4,8 @@ import React, { useState } from "react";
 
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
-const Moviebox = ({ title, poster_path, overview, release_date, vote_average }) => {
+const Moviebox = ({ title, poster_path, overview, release_date, vote_average, id }) => {
+  const ids = poster_path.replace("/", "").replace(".jpg", "");
   return (
     // <div className="">
     //   <img src={API_IMG + poster_path} class="card-img-top" alt="..." />
@@ -23,21 +24,17 @@ const Moviebox = ({ title, poster_path, overview, release_date, vote_average }) 
             <img src={API_IMG + poster_path} class="card-img-top" alt="..." />
             <h5 class="card-title">{title}</h5>
             {/* <p class="card-text">{overview}</p> */}
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#${ids}`}>
               View All
             </button>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id={`${ids}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class=" modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg ">
                 <div class="modal-content bg-dark">
-                  <div class="modal-header">
-                    <h5 class="modal-title  " id="exampleModalLabel">
-                      <h5 class="card-title">{title}</h5>
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
                   <div class="modal-body">
                     <img src={API_IMG + poster_path} class="img-thumbnail image" alt="..." />
+                    <h2 class="card-title">{title}</h2>
+
                     <h3>Score: {vote_average}</h3>
                     <h4>Release date : {release_date}</h4>
                     <p>{overview}</p>

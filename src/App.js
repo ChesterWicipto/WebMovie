@@ -48,7 +48,7 @@ const App = () => {
     console.log("Searching ");
 
     if (query.length == 0) {
-      alert("Tidak boleh kosong");
+      alert("No Data Search");
     } else {
       try {
         const url = `https://api.themoviedb.org/3/search/movie?api_key=367f5b629a0d846efc84ee8735fe85fc&query=${query}`;
@@ -56,7 +56,7 @@ const App = () => {
         const data = await res.json();
 
         if (data.results.length == 0) {
-          setTes("cari apa nn anjing? ");
+          setTes("Not Found ");
         }
 
         setMovie(data.results);
@@ -71,30 +71,30 @@ const App = () => {
   };
   return (
     <div>
-      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <nav className="navbar fix-top navbar-expand-lg navbar-dark bg-dark ">
+        <div className="container-fluid">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand fw-bold">Movies App</a>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active fw-bold fs-3" aria-current="page" href="/">
+          <a className="navbar-brand fw-bold">Movies App</a>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a className="nav-link active fw-bold fs-3" aria-current="page" href="/">
                   Trending
                 </a>
               </li>
             </ul>
-            <form class="d-flex " onSubmit={searchMovie}>
-              <input class="form-control me-2" type="search" value={query} onChange={changeHandler} placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-success" type="submit">
+            <form className="d-flex " onSubmit={searchMovie}>
+              <input className="form-control me-2" type="search" value={query} onChange={changeHandler} placeholder="Search" aria-label="Search" />
+              <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
             </form>
           </div>
         </div>
       </nav>
-      <div className="animate__animated animate__fadeIn">
+      <div>
         {movie.length > 0 ? (
           <div className="content mt-5">
             <div className="container  ">
